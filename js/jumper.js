@@ -1,12 +1,12 @@
 class Jumper {
-    constructor(ctx, keys) {
+    constructor(ctx, jumperPosX, jumperPosY, jumperWidth, jumperHeight, keys) {
 
         this.ctx = ctx
-        this.jumperPos = { x: 250, y: 350 }
-        this.jumperSize = { w: 20, h: 20 }
+        this.jumperPos = { x: jumperPosX, y: jumperPosY }
+        this.jumperSize = { w: jumperWidth, h: jumperHeight }
         this.keys = keys
         this.imageInstance = undefined
-        this.setListeners()
+        
 
         this.init()
 
@@ -15,29 +15,38 @@ class Jumper {
     init() {
         this.imageInstance = new Image()
         this.imageInstance.scr = '$$'
+        this.setListeners()
     }
 
 
     setListeners() {
         document.onkeydown = e => {
-            e.key === this.keys.left ? this.jumperCtx.moveLeft() : null
-            e.key === this.keys.rigth ? this.jumperCtx.moveRigth() : null
+
+            // console.log(this.ctx)
+            e.key === this.keys.left ? this.moveLeft() : null
+            e.key === this.keys.rigth ? this.moveRigth() : null
         }
     }
 
     moveLeft() {
-        this.jumperPos.x -= 20 // poner cambio de posición bien
+
+        this.jumperPos.x >= 40 ? this.jumperPos.x -= 20 : null // poner cambio de posición bien
+
     }
 
     moveRigth() {
-        this.jumperPos.y += 20 // poner cambio de posición bien
+
+        this.jumperPos.x <= 500 - 40 ? this.jumperPos.x += 20 : null // poner cambio de posición bien
 
         // vamos a meter una imagen directamente
     }
 
     drawJumper() {
-        this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
-    } 
+        // this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
+
+        this.ctx.fillStyle = 'red'
+        this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, 40, 40)
+    }
 
     // this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h
 
