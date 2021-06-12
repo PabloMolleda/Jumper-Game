@@ -1,20 +1,20 @@
 class Jumper {
-    constructor(ctx, canvasWidth, canvasHeight, keys) {
+    constructor(ctx, keys) {
 
-        this.jumperCtx = ctx
-        this.canvasWidth = canvasWidth
-        this.canvasHeight = canvasHeight
-        this.jumperPos = { x: undefined, y: undefined }
-        this.jumperSize = { w: undefined, h: undefined }
+        this.ctx = ctx
+        this.jumperPos = { x: 250, y: 350 }
+        this.jumperSize = { w: 20, h: 20 }
         this.keys = keys
         this.imageInstance = undefined
         this.setListeners()
+
+        this.init()
 
     }
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.scr = `img/ball-png.png`
+        this.imageInstance.scr = '$$'
     }
 
 
@@ -22,7 +22,6 @@ class Jumper {
         document.onkeydown = e => {
             e.key === this.keys.left ? this.jumperCtx.moveLeft() : null
             e.key === this.keys.rigth ? this.jumperCtx.moveRigth() : null
-
         }
     }
 
@@ -38,10 +37,8 @@ class Jumper {
 
     drawJumper() {
         this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
-    }
+    } 
 
-
-
-
+    // this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h
 
 }
