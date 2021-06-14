@@ -10,10 +10,10 @@ class Jumper {
 
         //this.jumperPosY0 = this.platforms[0].platformPos.y + platformSize.h
         this.jumperPosY0 = this.jumperPos.y
-        this.gravity = .4
+        this.gravity = .09
         this.speedPosY = 1
 
-        this.isJumping = undefined
+        this.isJumping = false
 
 
 
@@ -25,8 +25,8 @@ class Jumper {
         // this.imageInstance = new Image()
         // this.imageInstance.scr = '$$'
         this.setListeners()
-        this.initialJump()
         this.fall()
+        this.initialJump()
     }
 
 
@@ -40,7 +40,7 @@ class Jumper {
     }
 
     moveLeft() {
-        this.jumperPos.x >= 40 ? this.jumperPos.x -= 20 : null // poner cambio de posición bien
+        this.jumperPos.x >= 40 ? this.jumperPos.x -= 30 : null // poner cambio de posición bien
     }
 
     moveRigth() {
@@ -56,13 +56,40 @@ class Jumper {
 
     initialJump() {
         this.isJumping = true
-        this.jumperPos.y -= 50;
-        this.speedPosY -= 20;
+        this.jumperPos.y -= 10
+        this.speedPosY -= 10
     }
 
+    jump() {
+        this.isJumping = true
+        this.speedPosY -= 10
+        this.jumperPos.y -= 10
+    }
+
+    checkJump() {
+        if (this.speedPosY >= 0) {
+            console.log(this.jumperPos.y, this.isJumping)
+            this.isJumping = false
+        }
+    }
     fall() {
+
         this.jumperPos.y += this.speedPosY
         this.speedPosY += this.gravity
+
     }
 
+
 }
+
+
+
+    //    if  (si hay una colisión por arriba) {
+    //     this.initialJump()
+    //     this.platform.platformSpeed += 20
+    //    } else {
+    //        this.game.gameOver()
+    //    }
+
+
+

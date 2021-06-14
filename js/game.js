@@ -22,6 +22,7 @@ const jumpGame = {
         this.start()
         this.createFirstElements()
         this.createAllPlatforms()
+        
     },
 
     setContext() {
@@ -41,22 +42,24 @@ const jumpGame = {
 
     start() {
 
-        this.createFirstElements()
-        this.createRandomPosX()
-        this.jumper.initialJump()
         
+        this.createRandomPosX()
 
-        setInterval(() => {
+
+        this.interval = setInterval(() => {
 
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
 
             this.clearScreen()
+            console.log(this.jumper.jumperPos.y)
+            this.gameOver()
             this.drawAll()
+            this.jumper.checkJump()
             this.createAllPlatforms()
             this.moveAll()
-            this.isCollision() ? console.log('colision') : null
+            this.ifCollision()
 
-        }, 100)
+        }, 1000/60)
 
     },
 
@@ -74,7 +77,9 @@ const jumpGame = {
 
 
         if (this.framesCounter % 20 === 0) {
-            this.platforms.push(new Platform(this.ctx, 0, this.randomPosX, 100, 5, '#d4d7d4', this.canvasSize))
+
+            this.platforms.push(new Platform(this.ctx, 0, this.randomPosX, 100, .5, '#d4d7d4', this.canvasSize))
+
         }
         // al meter otro if, podemos cambiar la frecuencia con la que salen las plataformas
 
@@ -88,12 +93,12 @@ const jumpGame = {
 
     createFirstElements() {
 
-        this.jumper = new Jumper(this.ctx, this.platforms, 250, 20, 20, this.keys)
+        this.jumper = new Jumper(this.ctx, this.platforms, 250, 80, 80, this.keys)
 
         // this.platforms.push(new Platform(this.ctx, 50, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 150, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 350, 100, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
+         this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 550, 150, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 650, 100, 2, '#d4d7d4', this.canvasSize))
 
@@ -113,21 +118,37 @@ const jumpGame = {
     moveAll() {
         this.platforms.forEach(elm => elm.move())
         this.jumper.fall()
+        // Teo aiuda, no savemos aser colbac
+        // this.platforms.forEach(elm => elm.checkSpeed(isJumping))
     },
 
-    isCollision() {
-        return this.platforms.some(obs => {
-            return (
-                this.jumper.jumperPos.x + this.jumper.jumperSize.w >= obs.platformPos.x &&
-                this.jumper.jumperPos.x + this.jumper.jumperSize.h >= obs.platformPos.y &&
-                this.jumper.jumperPos.x <= obs.platformPos.x + obs.platformSize.w
-            )
+    // ifCollision() {
+
+    //     if (this.platforms.platformPos.x <= this.jumper.jumperPos.x &&
+    //         this.platforms.platformPos.x + this.platforms.platformSize.h >= this.jumper.jumperPos.x &&
+    //         this.platforms.platformPos.y <= this.jumper.jumperPos.y + this.platforms.platformSize.w &&
+    //         this.platforms.platformPos.y + this.platforms.platformSize.w >= this.jumper.jumperPos.x) {
+    //         console.log('iscolision')
+    //     }
+    // },
+
+    ifCollision() {
+        this.platforms.some(elm => {
+            if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.platformPos.x &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.platformPos.y &&
+                this.jumper.jumperPos.x <= elm.platformPos.x + elm.platformSize.w &&
+                this.jumper.jumperPos.y <= elm.platformPos.y + elm.platformSize.h &&
+                !this.jumper.isJumping) {
+                    this.jumper.jump()
+
+            }
         })
     },
 
-
     gameOver() {
-
+        if (this.jumper.jumperPos.y > this.canvasSize.h - this.jumper.jumperSize.h) {
+            clearInterval(this.interval)
+        }
     },
 
     win() {

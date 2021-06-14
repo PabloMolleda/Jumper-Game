@@ -22,7 +22,7 @@ class Platform {
     }
 
     platformRandomPosX() {
-        this.platformPos.x = Math.floor(Math.random() * (500 - 25) + 25)
+        this.platformPos.x = Math.floor(Math.random() * 500)
     }
 
     createPlatform() {
@@ -30,9 +30,15 @@ class Platform {
         this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
     }
 
+    checkSpeed(isJumping) {
+        this.platformSpeed = 20
+    }
+
     move() {
         this.platformPos.y += this.platformSpeed
     }
+
+    
 
 }
 
