@@ -43,6 +43,8 @@ const jumpGame = {
 
         this.createFirstElements()
         this.createRandomPosX()
+        this.jumper.initialJump()
+        
 
         setInterval(() => {
 
@@ -110,6 +112,7 @@ const jumpGame = {
 
     moveAll() {
         this.platforms.forEach(elm => elm.move())
+        this.jumper.fall()
     },
 
     isCollision() {

@@ -2,15 +2,17 @@ class Jumper {
     constructor(ctx, platforms, jumperPosX, jumperWidth, jumperHeight, keys) {
 
         this.ctx = ctx
-        this.jumperPos = { x: jumperPosX, y: 200 }
+        this.jumperPos = { x: jumperPosX, y: 600 }
         this.jumperSize = { w: jumperWidth, h: jumperHeight }
         this.imageInstance = undefined
         this.keys = keys
         this.jumperBottom = this.jumperPos.y + this.jumperSize.h + this.jumperSize.w
-        this.gravity = 0.8
-        this.speedPosY = 2
+
         //this.jumperPosY0 = this.platforms[0].platformPos.y + platformSize.h
         this.jumperPosY0 = this.jumperPos.y
+        this.gravity = .4
+        this.speedPosY = 1
+
         this.isJumping = undefined
 
 
@@ -23,7 +25,8 @@ class Jumper {
         // this.imageInstance = new Image()
         // this.imageInstance.scr = '$$'
         this.setListeners()
-        // this.jump()
+        this.initialJump()
+        this.fall()
     }
 
 
@@ -51,23 +54,15 @@ class Jumper {
         this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, 40, 60)
     }
 
-    jump() {
+    initialJump() {
         this.isJumping = true
-        // this.speedPosY += this.gravity;
-        this.jumperPos.y += this.speedPosY
-        //if (this.jumperBottom >)
-        // this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h
+        this.jumperPos.y -= 50;
+        this.speedPosY -= 20;
     }
 
-    // isJumping() {
-    //     if (this.jumperPos.y < this.jumperPosY0) {
-    //         this.jumperPos.y += this.speedPosY
-    //         this.speedPosY += this.gravity
-    //     } else {
-    //         this.jumperPos.y = this.jumperPosY0
-    //         this.speedPosY = 1
-    //     }
-    // }
-
+    fall() {
+        this.jumperPos.y += this.speedPosY
+        this.speedPosY += this.gravity
+    }
 
 }
