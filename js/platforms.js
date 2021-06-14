@@ -1,10 +1,10 @@
 class Platform {
 
-    constructor(ctx, platformPosY, platformPosX, platformWidth, speed, color, canvasSize) {
+    constructor(ctx, platformPosY, platformWidth, speed, color, canvasSize) {
         this.ctx = ctx
         this.platformPos = {
 
-            x: platformPosX,
+            x: undefined,
 
             y: platformPosY
 
@@ -21,13 +21,19 @@ class Platform {
     init() {
         this.createPlatform()
         this.move()
+        this.platformRandomPosX()
+    }
+
+    platformRandomPosX() {
+
+        this.platformPos.x = Math.floor(Math.random() * (500 - 0) + 0)
+
     }
 
     createPlatform() {
         this.ctx.fillStyle = this.color
         this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
     }
-
 
 
     move() {

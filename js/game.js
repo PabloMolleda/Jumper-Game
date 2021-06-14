@@ -14,7 +14,6 @@ const jumpGame = {
         rigth: 'ArrowRight',
         left: 'ArrowLeft'
     },
-    randomPosX: Math.floor(Math.random() * (500 - 0) + 0),
 
 
     init() {
@@ -43,7 +42,7 @@ const jumpGame = {
     start() {
 
         this.createFirstElements()
-
+        this.createRandomPosX()
 
         setInterval(() => {
 
@@ -59,6 +58,12 @@ const jumpGame = {
 
     },
 
+    createRandomPosX() {
+
+        this.platforms.forEach(elm => elm.platformRandomPosX())
+
+    },
+
     //  esta funcion es para crear los elementos, que luego metemos en start(). No tiene nada que ver con la de drawAll()
 
     createAllPlatforms() {
@@ -67,7 +72,6 @@ const jumpGame = {
 
         // cambiar el numero random que la hemos liado jejeje
 
-        randomPosX = Math.floor(Math.random() * (500 - 0) + 0)
 
         if (this.framesCounter % 25 === 0) {
             this.platforms.push(new Platform(this.ctx, -350, this.randomPosX, 100, 2, '#d4d7d4', this.canvasSize))
@@ -75,7 +79,7 @@ const jumpGame = {
         // al meter otro if, podemos cambiar la frecuencia con la que salen las plataformas
 
         if (this.framesCounter % 45 === 0) {
-            this.platforms.push(new Platform(this.ctx, 0, this.randomPosX, 80, 2, '#d0d827', this.canvasSize))
+            this.platforms.push(new Platform(this.ctx, 0, 80, 2, '#d0d827', this.canvasSize))
         }
 
     },
@@ -84,14 +88,14 @@ const jumpGame = {
 
     createFirstElements() {
 
-        this.jumper = new Jumper(this.ctx, 250, 600, 20, 20, this.keys)
+        this.jumper = new Jumper(this.ctx, 250, 20, 20, this.keys)
 
-        this.platforms.push(new Platform(this.ctx, 50, this.randomPosX - 50, 100, 2, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 150, this.randomPosX + 20, 100, 2, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 350, this.randomPosX - 50, 100, 2, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 250, this.randomPosX - 150, 100, 2, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 550, this.randomPosX, +150, 2, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 650, this.randomPosX, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 50, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 150, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 350, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 550, 150, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 650, 100, 2, '#d4d7d4', this.canvasSize))
 
 
     },
@@ -114,6 +118,7 @@ const jumpGame = {
 
     moveAll() {
         this.platforms.forEach(elm => elm.move())
+        this.jumper.jump()
     },
 
     isCollision() {
