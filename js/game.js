@@ -59,9 +59,7 @@ const jumpGame = {
     },
 
     createRandomPosX() {
-
         this.platforms.forEach(elm => elm.platformRandomPosX())
-
     },
 
     //  esta funcion es para crear los elementos, que luego metemos en start(). No tiene nada que ver con la de drawAll()
@@ -73,8 +71,8 @@ const jumpGame = {
         // cambiar el numero random que la hemos liado jejeje
 
 
-        if (this.framesCounter % 25 === 0) {
-            this.platforms.push(new Platform(this.ctx, -350, this.randomPosX, 100, 2, '#d4d7d4', this.canvasSize))
+        if (this.framesCounter % 20 === 0) {
+            this.platforms.push(new Platform(this.ctx, 0, this.randomPosX, 100, 5, '#d4d7d4', this.canvasSize))
         }
         // al meter otro if, podemos cambiar la frecuencia con la que salen las plataformas
 
@@ -88,7 +86,7 @@ const jumpGame = {
 
     createFirstElements() {
 
-        this.jumper = new Jumper(this.ctx, 250, 20, 20, this.keys)
+        this.jumper = new Jumper(this.ctx, this.platforms, 250, 20, 20, this.keys)
 
         // this.platforms.push(new Platform(this.ctx, 50, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 150, 100, 2, '#d4d7d4', this.canvasSize))
@@ -100,15 +98,9 @@ const jumpGame = {
 
     },
 
-
-
-
     clearScreen() {
-
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
-
         this.platforms = this.platforms.filter(elm => elm.canvasSize.h >= 0)
-
     },
 
     drawAll() {
@@ -118,27 +110,26 @@ const jumpGame = {
 
     moveAll() {
         this.platforms.forEach(elm => elm.move())
-        this.jumper.jump()
     },
 
     isCollision() {
         return this.platforms.some(obs => {
             return (
-            this.jumper.jumperPos.x + this.jumper.jumperSize.w >= obs.platformPos.x &&
-            this.jumper.jumperPos.x + this.jumper.jumperSize.h >= obs.platformPos.y &&
-            this.jumper.jumperPos.x <= obs.platformPos.x + obs.platformSize.w
+                this.jumper.jumperPos.x + this.jumper.jumperSize.w >= obs.platformPos.x &&
+                this.jumper.jumperPos.x + this.jumper.jumperSize.h >= obs.platformPos.y &&
+                this.jumper.jumperPos.x <= obs.platformPos.x + obs.platformSize.w
             )
         })
-      },
+    },
 
 
     gameOver() {
 
     },
 
-        win() {
+    win() {
 
-}
+    }
 
 
 

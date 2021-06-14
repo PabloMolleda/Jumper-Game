@@ -1,15 +1,18 @@
 class Jumper {
-    constructor(ctx, jumperPosX, jumperWidth, jumperHeight, keys) {
+    constructor(ctx, platforms, jumperPosX, jumperWidth, jumperHeight, keys) {
 
         this.ctx = ctx
-        this.jumperPos = { x: jumperPosX, y: 450 }
+        this.jumperPos = { x: jumperPosX, y: 200 }
         this.jumperSize = { w: jumperWidth, h: jumperHeight }
-        this.keys = keys
         this.imageInstance = undefined
-        this.gravity = 0.4
-        this.speedPosY = 1
-        this.jumperPosY0 = this.jumperPos.y - 20
+        this.keys = keys
+        this.jumperBottom = this.jumperPos.y + this.jumperSize.h + this.jumperSize.w
+        this.gravity = 0.8
+        this.speedPosY = 2
+        //this.jumperPosY0 = this.platforms[0].platformPos.y + platformSize.h
+        this.jumperPosY0 = this.jumperPos.y
         this.isJumping = undefined
+
 
 
         this.init()
@@ -20,7 +23,7 @@ class Jumper {
         // this.imageInstance = new Image()
         // this.imageInstance.scr = '$$'
         this.setListeners()
-        this.jump()
+        // this.jump()
     }
 
 
@@ -34,40 +37,26 @@ class Jumper {
     }
 
     moveLeft() {
-
         this.jumperPos.x >= 40 ? this.jumperPos.x -= 20 : null // poner cambio de posición bien
-
     }
 
     moveRigth() {
-
         this.jumperPos.x <= 500 - 40 ? this.jumperPos.x += 20 : null // poner cambio de posición bien
-
         // vamos a meter una imagen directamente
     }
 
     drawJumper() {
         // this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
-
         this.ctx.fillStyle = 'red'
-        this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, 40, 40)
+        this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, 40, 60)
     }
 
     jump() {
-
         this.isJumping = true
-
-        if (this.jumperPos.y >= this.jumperPosY0) {
-
-            this.jumperPosY0 -= 40
-            this.speedPosY -= 8
-
-
-        }
-
-
+        // this.speedPosY += this.gravity;
+        this.jumperPos.y += this.speedPosY
+        //if (this.jumperBottom >)
         // this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h
-
     }
 
     // isJumping() {
@@ -79,4 +68,6 @@ class Jumper {
     //         this.speedPosY = 1
     //     }
     // }
+
+
 }
