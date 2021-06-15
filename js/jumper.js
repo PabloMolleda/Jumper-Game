@@ -68,7 +68,7 @@ class Jumper {
 
     checkJump() {
         if (this.speedPosY >= 0) {
-            console.log(this.jumperPos.y, this.isJumping)
+            //console.log(this.jumperPos.y, this.isJumping)
             this.isJumping = false
         }
     }

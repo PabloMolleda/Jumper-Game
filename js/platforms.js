@@ -23,6 +23,10 @@ class Platform {
 
     platformRandomPosX() {
         this.platformPos.x = Math.floor(Math.random() * 500)
+        if (this.platformPos.x + this.platformSize.w > this.canvasSize.w || this.platformPos.x === 0) {
+            this.platformPos.x = 100
+        }
+        console.log(this.platformPos.x)
     }
 
     createPlatform() {
@@ -38,7 +42,7 @@ class Platform {
         this.platformPos.y += this.platformSpeed
     }
 
-    
+
 
 }
 

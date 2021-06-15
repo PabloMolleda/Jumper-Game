@@ -22,7 +22,7 @@ const jumpGame = {
         this.start()
         this.createFirstElements()
         this.createAllPlatforms()
-        
+
     },
 
     setContext() {
@@ -42,7 +42,7 @@ const jumpGame = {
 
     start() {
 
-        
+
         this.createRandomPosX()
 
 
@@ -51,7 +51,7 @@ const jumpGame = {
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
 
             this.clearScreen()
-            console.log(this.jumper.jumperPos.y)
+            //console.log(this.jumper.jumperPos.y)
             this.gameOver()
             this.drawAll()
             this.jumper.checkJump()
@@ -59,7 +59,7 @@ const jumpGame = {
             this.moveAll()
             this.ifCollision()
 
-        }, 1000/60)
+        }, 1000 / 60)
 
     },
 
@@ -77,8 +77,10 @@ const jumpGame = {
 
 
         if (this.framesCounter % 20 === 0) {
+            //
+            //ctx, platformPosY, platformWidth, speed, color, canvasSize
 
-            this.platforms.push(new Platform(this.ctx, 0, this.randomPosX, 100, .5, '#d4d7d4', this.canvasSize))
+            this.platforms.push(new Platform(this.ctx, 0, 100, .5, '#d4d7d4', this.canvasSize))
 
         }
         // al meter otro if, podemos cambiar la frecuencia con la que salen las plataformas
@@ -98,7 +100,7 @@ const jumpGame = {
         // this.platforms.push(new Platform(this.ctx, 50, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 150, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 350, 100, 2, '#d4d7d4', this.canvasSize))
-         this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 550, 150, 2, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, 650, 100, 2, '#d4d7d4', this.canvasSize))
 
@@ -139,7 +141,7 @@ const jumpGame = {
                 this.jumper.jumperPos.x <= elm.platformPos.x + elm.platformSize.w &&
                 this.jumper.jumperPos.y <= elm.platformPos.y + elm.platformSize.h &&
                 !this.jumper.isJumping) {
-                    this.jumper.jump()
+                this.jumper.jump()
 
             }
         })
