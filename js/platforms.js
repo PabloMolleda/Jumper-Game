@@ -34,8 +34,8 @@ class Platform {
         this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
     }
 
-    checkSpeed(isJumping) {
-        this.platformSpeed = 20
+    checkSpeed(isJumping) {      
+        isJumping === true ? this.platformSpeed = +6 : null
     }
 
     move() {
