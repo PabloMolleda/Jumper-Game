@@ -14,6 +14,7 @@ const jumpGame = {
         rigth: 'ArrowRight',
         left: 'ArrowLeft'
     },
+    shouldGeneratePlatform: true,
 
 
     init() {
@@ -71,23 +72,14 @@ const jumpGame = {
 
     createAllPlatforms() {
 
-        // ctx, platformPosY, platformWidth, speed, color, canvasSize
 
-        // cambiar el numero random que la hemos liado jejeje
-
-
-        if (this.framesCounter % 10 === 0) {
-            //
-            //ctx, platformPosY, platformWidth, speed, color, canvasSize
-
-            this.platforms.push(new Platform(this.ctx, 0, 100, 1, '#d4d7d4', this.canvasSize))
+        if (this.framesCounter % 20 === 0) {
+ 
+            const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
+            // this.platforms.push(new Platform(this.ctx, 0, 100, .5, '#d4d7d4', this.canvasSize))
 
         }
-        // al meter otro if, podemos cambiar la frecuencia con la que salen las plataformas
-
-        // if (this.framesCounter % 50 === 0) {
-        //     this.platforms.push(new Platform(this.ctx, 0, 80, 2, '#d0d827', this.canvasSize))
-        // }
 
     },
 
@@ -97,12 +89,12 @@ const jumpGame = {
 
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
-        // this.platforms.push(new Platform(this.ctx, 50, 100, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 150, 100, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 350, 100, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 250, 100, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 550, 150, 2, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 650, 100, 2, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, -300, 100, .5, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, -450, 150, .5, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, -650, 100, .5, '#d4d7d4', this.canvasSize))
 
 
     },
@@ -117,22 +109,13 @@ const jumpGame = {
         this.jumper.drawJumper()
     },
 
-    moveAll() { 
+    moveAll() {
         this.platforms.forEach(elm => elm.move())
         this.jumper.fall()
         // Teo aiuda, no savemos aser colbac
         this.platforms.forEach(elm => elm.checkSpeed(this.jumper.isJumping))
     },
 
-    // ifCollision() {
-
-    //     if (this.platforms.platformPos.x <= this.jumper.jumperPos.x &&
-    //         this.platforms.platformPos.x + this.platforms.platformSize.h >= this.jumper.jumperPos.x &&
-    //         this.platforms.platformPos.y <= this.jumper.jumperPos.y + this.platforms.platformSize.w &&
-    //         this.platforms.platformPos.y + this.platforms.platformSize.w >= this.jumper.jumperPos.x) {
-    //         console.log('iscolision')
-    //     }
-    // },
 
     ifCollision() {
         this.platforms.some(elm => {
@@ -142,6 +125,7 @@ const jumpGame = {
                 this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.platformPos.y + elm.platformSize.h &&
                 !this.jumper.isJumping) {
                 this.jumper.jump()
+
 
             }
         })

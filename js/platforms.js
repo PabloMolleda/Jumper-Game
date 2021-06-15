@@ -10,6 +10,7 @@ class Platform {
         this.platformSpeed = speed
         this.canvasSize = canvasSize
         this.color = color
+        
 
         this.init()
 
@@ -35,11 +36,12 @@ class Platform {
     }
 
     checkSpeed(isJumping) {      
-        isJumping === true ? this.platformSpeed = +6 : null
+        isJumping === true ? this.platformSpeed = +4 : null
+        
     }
 
     move() {
-        this.platformPos.y += this.platformSpeed
+         this.platformPos.y += this.platformSpeed
     }
 
 

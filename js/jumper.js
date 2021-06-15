@@ -62,7 +62,7 @@ class Jumper {
 
     jump() {
         this.isJumping = true
-        this.speedPosY = -12
+        this.speedPosY = -10
         this.jumperPos.y -= 10
     }
 
