@@ -14,7 +14,6 @@ const jumpGame = {
         rigth: 'ArrowRight',
         left: 'ArrowLeft'
     },
-    shouldGeneratePlatform: true,
 
 
     init() {
@@ -43,10 +42,6 @@ const jumpGame = {
 
     start() {
 
-
-        this.createRandomPosX()
-
-
         this.interval = setInterval(() => {
 
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
@@ -64,38 +59,28 @@ const jumpGame = {
 
     },
 
-    createRandomPosX() {
-        this.platforms.forEach(elm => elm.platformRandomPosX())
-    },
-
-    //  esta funcion es para crear los elementos, que luego metemos en start(). No tiene nada que ver con la de drawAll()
-
     createAllPlatforms() {
 
 
         if (this.framesCounter % 20 === 0) {
- 
+
             const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
             // this.platforms.push(new Platform(this.ctx, 0, 100, .5, '#d4d7d4', this.canvasSize))
-
         }
 
     },
-
-    // tenemos que dibujar la plataforma detras de la bola
 
     createFirstElements() {
 
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
         // this.platforms.push(new Platform(this.ctx, -300, 100, .5, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
+        // this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, -450, 150, .5, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, -650, 100, .5, '#d4d7d4', this.canvasSize))
-
 
     },
 
