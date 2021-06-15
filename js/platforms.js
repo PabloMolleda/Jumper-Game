@@ -11,7 +11,6 @@ class Platform {
         this.canvasSize = canvasSize
         this.color = color
         
-
         this.init()
 
     }
@@ -27,7 +26,6 @@ class Platform {
         if (this.platformPos.x + this.platformSize.w > this.canvasSize.w || this.platformPos.x === 0) {
             this.platformPos.x = 100
         }
-        console.log(this.platformPos.x)
     }
 
     createPlatform() {
