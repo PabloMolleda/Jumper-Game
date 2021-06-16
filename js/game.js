@@ -70,11 +70,11 @@ const jumpGame = {
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
         }
 
-        if (this.framesCounter % 20 === 0) {
+        if (this.framesCounter % 25 === 0) {
             this.enemies.push((this.ctx, 0, 100, 5, this.canvasSize))
         }
 
-        // if (this.framesCounter % 20 === 0) {
+        // if (this.framesCounter % 25 === 0) {
         //     this.powerBalls.push(new Powerballs(this.ctx, this.powerBalls.powerBallsPos.x - 180, 100, 5, this.canvasSize))
 
         // }
@@ -97,7 +97,7 @@ const jumpGame = {
     clearScreen() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
         this.platforms = this.platforms.filter(elm => elm.canvasSize.h >= 0)
-        //this.enemies = this.enemies.filter(elm => elm.canvasSize.h >= 0)
+        // this.enemies = this.enemies.filter(elm => elm.canvasSize.h >= 0)
         //this.powerBalls = this.powerBalls.filter(elm => elm.canvasSize.h >= 0)
     },
 
@@ -111,7 +111,7 @@ const jumpGame = {
 
     moveAll() {
         this.platforms.forEach(elm => elm.move())
-        //this.enemies.forEach(elm => elm.move())
+        this.enemies.forEach(elm => elm.move())
         //this.powerBalls.forEach(elm => elm.move())
         this.jumper.fall()
         // Teo aiuda, no savemos aser colbac
@@ -132,14 +132,14 @@ const jumpGame = {
             }
         })
 
-        // this.enemies.some(elm => {
-        //     if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.enemiesPos.x &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.enemiesPos.y &&
-        //         this.jumper.jumperPos.x <= elm.enemiesPos.x + elm.enemiesize.w &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.enemiesPos.y + elm.enemiesSize.h) {
-        //         this.jumper.jump()
-        //     }
-        // })
+        this.enemies.some(elm => {
+            if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.enemiesPos.x &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.enemiesPos.y &&
+                this.jumper.jumperPos.x <= elm.enemiesPos.x + elm.enemiesize.w &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.enemiesPos.y + elm.enemiesSize.h) {
+                this.jumper.jump()
+            }
+        })
 
         // this.powerBalls.some(elm => {
         //     if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.powerBallsPos.x &&
