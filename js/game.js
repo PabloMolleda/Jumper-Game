@@ -10,6 +10,7 @@ const jumpGame = {
     jumper: undefined,
     platforms: [],
     framesCounter: 0,
+    score: 0,
     keys: {
         rigth: 'ArrowRight',
         left: 'ArrowLeft'
@@ -43,7 +44,7 @@ const jumpGame = {
     start() {
 
         this.interval = setInterval(() => {
-
+            this.scoreCount()
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
 
             this.clearScreen()
@@ -76,9 +77,9 @@ const jumpGame = {
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
         // this.platforms.push(new Platform(this.ctx, -300, 100, .5, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
+        this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, -450, 150, .5, '#d4d7d4', this.canvasSize))
         // this.platforms.push(new Platform(this.ctx, -650, 100, .5, '#d4d7d4', this.canvasSize))
 
@@ -92,6 +93,7 @@ const jumpGame = {
     drawAll() {
         this.platforms.forEach(elm => elm.createPlatform())
         this.jumper.drawJumper()
+
     },
 
     moveAll() {
@@ -115,9 +117,21 @@ const jumpGame = {
             }
         })
     },
+    scoreCount() {
+        let scoreElement = document.getElementById('score');
+        if (this.platforms[0].platformPos.y > this.jumper.jumperPos.y + 10) {
+            this.score++;
+        }
+        scoreElement.innerHTML = ("SCORE: " + this.score / 50)
+
+        console.log(this.score)
+        console.log(scoreElement)
+
+
+    },
 
     gameOver() {
-        if (this.jumper.jumperPos.y > this.canvasSize.h - this.jumper.jumperSize.h) {
+        if (this.jumper.jumperPos.y > this.canvasSize.h - this.jumper.jumperSize.h - 5) {
             clearInterval(this.interval)
         }
     },

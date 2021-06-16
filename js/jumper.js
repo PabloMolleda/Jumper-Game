@@ -3,10 +3,10 @@ class Jumper {
 
         this.ctx = ctx
         this.jumperPos = { x: jumperPosX, y: 600 }
-        this.jumperSize = { w: 60, h: 80}
+        this.jumperSize = { w: 60, h: 80 }
         this.imageInstance = undefined
         this.keys = keys
-//        this.jumperBottom = this.jumperPos.y + this.jumperSize.h + this.jumperSize.w
+        //        this.jumperBottom = this.jumperPos.y + this.jumperSize.h + this.jumperSize.w
 
         //this.jumperPosY0 = this.platforms[0].platformPos.y + platformSize.h
         this.jumperPosY0 = this.jumperPos.y
@@ -68,7 +68,7 @@ class Jumper {
 
     checkJump() {
         if (this.speedPosY >= 5) {
-            console.log(this.speedPosY, this.jumperPos.y)
+            //console.log(this.speedPosY, this.jumperPos.y)
             //console.log(this.jumperPos.y, this.isJumping)
             this.isJumping = false
         }
