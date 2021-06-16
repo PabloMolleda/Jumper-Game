@@ -4,7 +4,7 @@ class Powerballs {
         this.ctx = ctx
         this.powerBallsPos = {
             x: undefined,
-            y: epowerBallsPosY
+            y: powerBallsPosY
         }
         this.powerBallsSize = { w: powerBallsWidth, h: 30 }
         this.powerBallsSpeed = speed

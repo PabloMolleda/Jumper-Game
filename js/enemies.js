@@ -3,7 +3,7 @@ class Enemy {
     constructor(ctx, enemiesPosY, enemiesWidth, speed, canvasSize) {
         this.ctx = ctx
         this.enemiesPos = {
-            x: 100,
+            x: undefined,
             y: enemiesPosY
         }
         this.enemiesSize = { w: enemiesWidth, h: 30 }
@@ -11,6 +11,8 @@ class Enemy {
         this.canvasSize = canvasSize
         this.imageInstance = undefined
 
+        init()
+        
     }
 
     init() {
@@ -24,8 +26,6 @@ class Enemy {
         if (this.enemiesPos.x + this.enemiesSize.w > this.canvasSize.w || this.enemiesPos.x === 0) {
             this.enemiesPos.x = 100
         }
-        console.log(this.enemiesPos.x)
-
     }
     createEnemies() {
         this.imageInstance = new Image()
@@ -36,6 +36,7 @@ class Enemy {
 
     move() {
         this.enemiesPos.y += this.enemiesSpeed
+        
     }
 
 }
