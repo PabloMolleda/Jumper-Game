@@ -69,41 +69,36 @@ const jumpGame = {
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
         }
 
-        if (this.framesCounter % 2 === 0) {
-            this.enemies.push(new Enemy(this.ctx, 0, 100, 5, this.canvasSize))
-        }
-        console.log(this.enemies)
-        // if (this.framesCounter % 25 === 0) {
-        //     this.powerBalls.push(new Powerballs(this.ctx, this.powerBalls.powerBallsPos.x - 180, 100, 5, this.canvasSize))
-
+        // if (this.framesCounter % 60 === 0) {
+        //     this.enemies.push(new Enemy(this.ctx, 0, 100, 5, this.canvasSize))
         // }
+        if (this.framesCounter % 100 === 0) {
+            //ctx, powerBallsPosY, powerBallsWidth, speed, canvasSize
+            this.powerBalls.push(new Powerballs(this.ctx, 100, 5, this.canvasSize))
+
+        }
 
     },
 
     createFirstElements() {
-
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
-        // this.platforms.push(new Platform(this.ctx, -300, 100, .5, '#d4d7d4', this.canvasSize))
         this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
         this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
         this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, -450, 150, .5, '#d4d7d4', this.canvasSize))
-        // this.platforms.push(new Platform(this.ctx, -650, 100, .5, '#d4d7d4', this.canvasSize))
-
     },
 
     clearScreen() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
         this.platforms = this.platforms.filter(elm => elm.canvasSize.h >= 0)
         this.enemies = this.enemies.filter(elm => elm.canvasSize.h >= 0)
-        //this.powerBalls = this.powerBalls.filter(elm => elm.canvasSize.h >= 0)
+        this.powerBalls = this.powerBalls.filter(elm => elm.canvasSize.h >= 0)
     },
 
     drawAll() {
         this.platforms.forEach(elm => elm.createPlatform())
         this.enemies.forEach(elm => elm.createEnemies())
-        //this.powerBalls.forEach(elm => elm.createPowerBalls())
+        this.powerBalls.forEach(elm => elm.createPowerBalls())
         this.jumper.drawJumper()
 
     },
@@ -111,7 +106,7 @@ const jumpGame = {
     moveAll() {
         this.platforms.forEach(elm => elm.move())
         this.enemies.forEach(elm => elm.move())
-        //this.powerBalls.forEach(elm => elm.move())
+        this.powerBalls.forEach(elm => elm.move())
         this.jumper.fall()
         // Teo aiuda, no savemos aser colbac
         this.platforms.forEach(elm => elm.checkSpeed(this.jumper.isJumping))
@@ -129,24 +124,28 @@ const jumpGame = {
             }
         })
 
-        // this.enemies.some(elm => {
-        //     if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.enemiesPos.x &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.enemiesPos.y &&
-        //         this.jumper.jumperPos.x <= elm.enemiesPos.x + elm.enemiesize.w &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.enemiesPos.y + elm.enemiesSize.h) {
-        //         this.jumper.jump()
-        //     }
-        // })
+        this.enemies.some(elm => {
+            if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.enemiesPos.x &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.enemiesPos.y && // arriba
+                this.jumper.jumperPos.x <= elm.enemiesPos.x + elm.enemiesSize.w &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h <= elm.enemiesPos.y + elm.enemiesSize.h + 90) { // abajo
 
-        // this.powerBalls.some(elm => {
-        //     if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.powerBallsPos.x &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.powerBallsPos.y &&
-        //         this.jumper.jumperPos.x <= elm.powerBallsPos.x + elm.powerBallsSize.w &&
-        //         this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.powerBallsPos.y + elm.powerBallsSize.h) {
-        //         this.jumper.jump()
+            }
+        })
 
-        //     }
-        // })
+        this.powerBalls.some(elm => {
+            if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= elm.powerBallsPos.x &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.powerBallsPos.y &&
+                this.jumper.jumperPos.x <= elm.powerBallsPos.x + elm.powerBallsSize.w &&
+                this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.powerBallsPos.y + elm.powerBallsSize.h) {
+
+
+                this.platforms.forEach(elm => elm.maximumSpeed())
+                this.jumper.bigJump()
+
+
+            }
+        })
     },
     scoreCount() {
         let scoreElement = document.getElementById('score');
@@ -154,7 +153,7 @@ const jumpGame = {
             this.score++;
         }
         if (this.framesCounter % 60 === 0) {
-            scoreElement.innerHTML = ("SCORE: " + this.score / 50)
+            scoreElement.innerHTML = ("SCORE: " + this.score)
         }
 
         //console.log(this.score)
