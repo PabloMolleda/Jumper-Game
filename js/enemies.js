@@ -10,14 +10,15 @@ class Enemy {
         this.enemiesSpeed = speed
         this.canvasSize = canvasSize
         this.imageInstance = undefined
+        this.init()
 
         init()
         
     }
 
     init() {
-        this.move()
         this.enemiesRandomPosX()
+
 
     }
 
@@ -29,7 +30,7 @@ class Enemy {
     }
     createEnemies() {
         this.imageInstance = new Image()
-        this.imageInstance.src = 'img/car.png'
+        this.imageInstance.src = 'img/bomb.jpg'
         this.ctx.drawImage(this.imageInstance, this.enemiesPos.x, this.enemiesPos.y, this.enemiesSize.w, this.enemiesSize.h)
         // aqui es donde metemos la imagen de los malotes
     }

@@ -10,7 +10,7 @@ class Jumper {
 
         //this.jumperPosY0 = this.platforms[0].platformPos.y + platformSize.h
         this.jumperPosY0 = this.jumperPos.y
-        this.gravity = .2
+        this.gravity = 0.2
         this.speedPosY = 1
 
         this.isJumping = false
@@ -55,15 +55,39 @@ class Jumper {
     }
 
     initialJump() {
+        this.gravity = 0.2
         this.isJumping = true
         this.jumperPos.y -= 10
         this.speedPosY -= 15
+
     }
 
     jump() {
         this.isJumping = true
-        this.speedPosY = -10
-        this.jumperPos.y -= 10
+        if (this.jumperPos.y < 150) {
+            this.gravity = 1.1
+            this.speedPosY = 0
+            this.jumperPos.y -= 40
+        } else {
+            this.gravity = .2
+            this.speedPosY = -10
+            this.jumperPos.y -= 10
+        }
+
+    }
+
+
+    bigJump() {
+        if (this.jumperPos.y < 150) {
+            this.gravity = .9
+            this.speedPosY = 0
+            this.jumperPos.y += 40
+        } else {
+            this.gravity = 0.05
+            this.isJumping = true
+            this.speedPosY = -5
+            this.jumperPos.y -= 5
+        }
     }
 
     checkJump() {

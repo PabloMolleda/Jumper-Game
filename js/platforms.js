@@ -10,13 +10,12 @@ class Platform {
         this.platformSpeed = speed
         this.canvasSize = canvasSize
         this.color = color
-        
+
         this.init()
 
     }
 
     init() {
-        this.move()
         this.platformRandomPosX()
     }
 
@@ -32,15 +31,22 @@ class Platform {
         this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
     }
 
-    checkSpeed(isJumping) {      
+    checkSpeed(isJumping) {
         isJumping === true ? this.platformSpeed = +4 : null
-        
+
+    }
+
+
+
+    maximumSpeed() {
+
+        this.platformSpeed = +100
+
     }
 
     move() {
-         this.platformPos.y += this.platformSpeed
+        this.platformPos.y += this.platformSpeed
     }
-
 
 
 }
