@@ -66,10 +66,8 @@ const jumpGame = {
 
 
         if (this.framesCounter % 20 === 0) {
-
             const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
-
         }
 
         if (this.framesCounter % 20 === 0) {

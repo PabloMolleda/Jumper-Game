@@ -10,7 +10,7 @@ class Enemy {
         this.enemiesSpeed = speed
         this.canvasSize = canvasSize
         this.imageInstance = undefined
-    
+
     }
 
     init() {
@@ -24,7 +24,7 @@ class Enemy {
         if (this.enemiesPos.x + this.enemiesSize.w > this.canvasSize.w || this.enemiesPos.x === 0) {
             this.enemiesPos.x = 100
         }
-        
+
     }
 
     createEnemies() {
@@ -35,7 +35,7 @@ class Enemy {
     }
 
     move() {
-         this.enemiesPos.y += this.enemiesSpeed
+        this.enemiesPos.y += this.enemiesSpeed
     }
 
 }
