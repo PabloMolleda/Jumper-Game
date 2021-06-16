@@ -1,6 +1,6 @@
 class Powerballs {
 
-    constructor(ctx, powerBallsWidth, speed, canvasSize) {
+    constructor(ctx, powerBallsWidth, speed, canvasSize, powerBallsPhoto) {
         this.ctx = ctx
         this.powerBallsPos = {
             x: undefined,
@@ -11,6 +11,7 @@ class Powerballs {
         this.canvasSize = canvasSize
         this.imageInstance = undefined
         this.init()
+        this.powerBallsImage = powerBallsPhoto
 
     }
 
@@ -39,7 +40,7 @@ class Powerballs {
 
     createPowerBalls() {
         this.imageInstance = new Image()
-        this.imageInstance.src = 'img/jumping-bed.png'
+        this.imageInstance.src = `img/${this.powerBallsPhoto}`
         this.ctx.drawImage(this.imageInstance, this.powerBallsPos.x, this.powerBallsPos.y, this.powerBallsSize.w, this.powerBallsSize.h)
         // aqui es donde metemos la imagen de los powerballs
     }

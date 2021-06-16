@@ -1,6 +1,6 @@
 class Platform {
 
-    constructor(ctx, platformPosY, platformWidth, speed, color, canvasSize) {
+    constructor(ctx, platformPosY, platformWidth, speed, canvasSize, platformPhoto) {
         this.ctx = ctx
         this.platformPos = {
             x: undefined,
@@ -9,7 +9,7 @@ class Platform {
         this.platformSize = { w: platformWidth, h: 20 }
         this.platformSpeed = speed
         this.canvasSize = canvasSize
-        this.color = color
+        this.platformImage = platformPhoto
 
         this.init()
 
@@ -27,8 +27,9 @@ class Platform {
     }
 
     createPlatform() {
-        this.ctx.fillStyle = this.color
-        this.ctx.fillRect(this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
+        this.imageInstance = new Image()
+        this.imageInstance.src = `/img/${this.platformPhoto}`
+        this.ctx.drawImage(this.imageInstance, this.platformPos.x, this.platformPos.y, this.platformSize.w, this.platformSize.h)
     }
 
     checkSpeed(isJumping) {

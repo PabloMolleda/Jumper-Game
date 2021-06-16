@@ -11,6 +11,7 @@ const jumpGame = {
     platforms: [],
     enemies: [],
     powerBalls: [],
+    finishLine: undefined,
     framesCounter: 0,
     score: 0,
     keys: {
@@ -23,7 +24,7 @@ const jumpGame = {
         this.setContext()
         this.setDimensions()
         this.start()
-        this.createFirstElements()
+        this.createUniqueElements()
         this.createAllPlatforms()
 
     },
@@ -50,48 +51,64 @@ const jumpGame = {
 
             this.scoreCount()
             this.clearScreen()
-            //console.log(this.jumper.jumperPos.y)
             this.gameOver()
             this.drawAll()
             this.jumper.checkJump()
             this.createAllPlatforms()
             this.moveAll()
             this.ifCollision()
-
+            if(this.framesCounter === 200) this.createFinishLine()
         }, 1000 / 60)
 
     },
 
     createAllPlatforms() {
 
-        if (this.framesCounter % 20 === 0) {
+        if (this.framesCounter % 20 === 0 && this.finishLine === undefined) {
             const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
-            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, '#d4d7d4', this.canvasSize))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform.png'))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform.png'))
         }
 
-        // if (this.framesCounter % 60 === 0) {
-        //     this.enemies.push(new Enemy(this.ctx, 0, 100, 5, this.canvasSize))
+        // if (this.framesCounter % 80 === 0) {
+        //     this.enemies.push(new Enemy(this.ctx, 0, 100, 5, this.canvasSize, 'bomb.png'))
         // }
-        if (this.framesCounter % 100 === 0) {
-            //ctx, powerBallsPosY, powerBallsWidth, speed, canvasSize
-            this.powerBalls.push(new Powerballs(this.ctx, 100, 5, this.canvasSize))
+
+        if (this.framesCounter % 60 === 0 && this.finishLine === undefined) {
+            
+            this.powerBalls.push(new Powerballs(this.ctx, 100, 5, this.canvasSize, 'rockets.png'))
 
         }
 
     },
 
-    createFirstElements() {
+    createUniqueElements() {
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
-        this.platforms.push(new Platform(this.ctx, 300, 100, 1, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 150, 100, 1, '#d4d7d4', this.canvasSize))
-        this.platforms.push(new Platform(this.ctx, 250, 100, 1, '#d4d7d4', this.canvasSize))
+         this.platforms.push(new Platform(this.ctx, 300, 100, 1, this.canvasSize, 'platform.png'))
+        // this.platforms.push(new Platform(this.ctx, 150, 100, 1, this.canvasSize, 'platform.png'))
+        // this.platforms.push(new Platform(this.ctx, 250, 100, 1, this.canvasSize, 'platform.png'))
+
+    },
+    
+    createFinishLine() {
+        const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
+        this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform.png')  
+
+        if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= this.finishLine.finishLinePos.x &&
+            this.jumper.jumperPos.y + this.jumper.jumperSize.h >= this.finishLine.finishLinePos.y &&
+            this.jumper.jumperPos.x <= this.finishLine.finishLinePos.x + this.finishLine.finishLineSize.w &&
+            this.jumper.jumperPos.y + this.jumper.jumperSize.h - 30 <= this.finishLine.finishLinePos.y + this.finishLine.finishLineSize.h &&
+            !this.jumper.isJumping) {
+            clearInterval(this.interval)
+
+        }
     },
 
     clearScreen() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
-        this.platforms = this.platforms.filter(elm => elm.canvasSize.h >= 0)
         this.enemies = this.enemies.filter(elm => elm.canvasSize.h >= 0)
+        this.platforms = this.platforms.filter(elm => elm.canvasSize.h >= 0)
         this.powerBalls = this.powerBalls.filter(elm => elm.canvasSize.h >= 0)
     },
 
@@ -100,6 +117,8 @@ const jumpGame = {
         this.enemies.forEach(elm => elm.createEnemies())
         this.powerBalls.forEach(elm => elm.createPowerBalls())
         this.jumper.drawJumper()
+        if(this.finishLine !== undefined) this.finishLine.draw()
+
 
     },
 
@@ -108,6 +127,8 @@ const jumpGame = {
         this.enemies.forEach(elm => elm.move())
         this.powerBalls.forEach(elm => elm.move())
         this.jumper.fall()
+        if(this.finishLine)this.finishLine.move()
+
         // Teo aiuda, no savemos aser colbac
         this.platforms.forEach(elm => elm.checkSpeed(this.jumper.isJumping))
     },
@@ -142,10 +163,11 @@ const jumpGame = {
 
                 this.platforms.forEach(elm => elm.maximumSpeed())
                 this.jumper.bigJump()
-
-
             }
         })
+
+
+
     },
     scoreCount() {
         let scoreElement = document.getElementById('score');
