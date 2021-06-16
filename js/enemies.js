@@ -24,6 +24,8 @@ class Enemy {
         if (this.enemiesPos.x + this.enemiesSize.w > this.canvasSize.w || this.enemiesPos.x === 0) {
             this.enemiesPos.x = 100
         }
+
+        console.log(this.enemiesPos.x, this.enemiesSize.w, this.canvasSize.w)
         
     }
 
