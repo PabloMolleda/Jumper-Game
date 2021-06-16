@@ -3,7 +3,7 @@ class Enemy {
     constructor(ctx, enemiesPosY, enemiesWidth, speed, canvasSize) {
         this.ctx = ctx
         this.enemiesPos = {
-            x: undefined,
+            x: 100,
             y: enemiesPosY
         }
         this.enemiesSize = { w: enemiesWidth, h: 30 }
@@ -14,9 +14,9 @@ class Enemy {
     }
 
     init() {
-        //this.createEnemies()
         this.move()
         this.enemiesRandomPosX()
+
     }
 
     enemiesRandomPosX() {
@@ -24,12 +24,12 @@ class Enemy {
         if (this.enemiesPos.x + this.enemiesSize.w > this.canvasSize.w || this.enemiesPos.x === 0) {
             this.enemiesPos.x = 100
         }
+        console.log(this.enemiesPos.x)
 
     }
-
     createEnemies() {
         this.imageInstance = new Image()
-        this.imageInstance.src = 'img/bomb.png'
+        this.imageInstance.src = 'img/car.png'
         this.ctx.drawImage(this.imageInstance, this.enemiesPos.x, this.enemiesPos.y, this.enemiesSize.w, this.enemiesSize.h)
         // aqui es donde metemos la imagen de los malotes
     }
