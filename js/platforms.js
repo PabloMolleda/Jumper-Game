@@ -16,7 +16,6 @@ class Platform {
     }
 
     init() {
-        this.createPlatform()
         this.move()
         this.platformRandomPosX()
     }
