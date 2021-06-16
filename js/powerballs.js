@@ -26,7 +26,7 @@ class Powerballs {
         }
     }
     powerBallsRandomPosY() {
-        this.powerBallsPos.y = Math.floor(Math.random() * 500)
+        this.powerBallsPos.y = Math.floor(Math.random() * 700)
         if (this.powerBallsPos.y + this.powerBallsSize.h > this.canvasSize.h || this.powerBallsPos.y === 0) {
             this.powerBallsPos.y = 352
         }

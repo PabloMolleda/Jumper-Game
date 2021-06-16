@@ -67,7 +67,7 @@ class Jumper {
         if (this.jumperPos.y < 150) {
             this.gravity = 1.1
             this.speedPosY = 0
-            this.jumperPos.y -= 40
+            this.jumperPos.y += 30
         } else {
             this.gravity = .2
             this.speedPosY = -10
@@ -78,13 +78,13 @@ class Jumper {
 
 
     bigJump() {
+        this.isJumping = true
         if (this.jumperPos.y < 150) {
-            this.gravity = .9
+            this.gravity = 1.1
             this.speedPosY = 0
-            this.jumperPos.y += 40
+            this.jumperPos.y += 15
         } else {
-            this.gravity = 0.05
-            this.isJumping = true
+            this.gravity = 0.08
             this.speedPosY = -5
             this.jumperPos.y -= 5
         }

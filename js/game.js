@@ -72,7 +72,7 @@ const jumpGame = {
         // if (this.framesCounter % 60 === 0) {
         //     this.enemies.push(new Enemy(this.ctx, 0, 100, 5, this.canvasSize))
         // }
-        if (this.framesCounter % 100 === 0) {
+        if (this.framesCounter % 60 === 0) {
             //ctx, powerBallsPosY, powerBallsWidth, speed, canvasSize
             this.powerBalls.push(new Powerballs(this.ctx, 100, 5, this.canvasSize))
 
@@ -138,12 +138,8 @@ const jumpGame = {
                 this.jumper.jumperPos.y + this.jumper.jumperSize.h >= elm.powerBallsPos.y &&
                 this.jumper.jumperPos.x <= elm.powerBallsPos.x + elm.powerBallsSize.w &&
                 this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.powerBallsPos.y + elm.powerBallsSize.h) {
-
-
                 this.platforms.forEach(elm => elm.maximumSpeed())
                 this.jumper.bigJump()
-
-
             }
         })
     },

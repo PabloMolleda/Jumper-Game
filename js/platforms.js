@@ -32,16 +32,12 @@ class Platform {
     }
 
     checkSpeed(isJumping) {
-        isJumping === true ? this.platformSpeed = +4 : null
+        isJumping === true ? this.platformSpeed = +5 : null
 
     }
 
-
-
-    maximumSpeed() {
-
-        this.platformSpeed = +100
-
+    maximumSpeed(isJumping) {
+        isJumping === true ? this.platformSpeed += 5 : null
     }
 
     move() {
