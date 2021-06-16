@@ -3,7 +3,7 @@ class Jumper {
 
         this.ctx = ctx
         this.jumperPos = { x: jumperPosX, y: 600 }
-        this.jumperSize = { w: 60, h: 80 }
+        this.jumperSize = { w: 80, h: 100 }
         this.imageInstance = undefined
         this.keys = keys
         //        this.jumperBottom = this.jumperPos.y + this.jumperSize.h + this.jumperSize.w
@@ -22,8 +22,8 @@ class Jumper {
     }
 
     init() {
-        // this.imageInstance = new Image()
-        // this.imageInstance.scr = '$$'
+        this.imageInstance = new Image()
+        this.imageInstance.src = '/img/jumper.png'
         this.setListeners()
         this.fall()
         this.initialJump()
@@ -49,9 +49,9 @@ class Jumper {
     }
 
     drawJumper() {
-        // this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
-        this.ctx.fillStyle = 'red'
-        this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
+        this.ctx.drawImage(this.imageInstance, this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
+        // this.ctx.fillStyle = 'red'
+        // this.ctx.fillRect(this.jumperPos.x, this.jumperPos.y, this.jumperSize.w, this.jumperSize.h)
     }
 
     initialJump() {
