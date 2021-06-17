@@ -8,6 +8,7 @@ const jumpGame = {
     ctx: undefined,
     canvasSize: { w: undefined, h: undefined },
     jumper: undefined,
+    background: undefined,
     platforms: [],
     enemies: [],
     powerBalls: [],
@@ -59,10 +60,10 @@ const jumpGame = {
             this.createAllPlatforms()
             this.moveAll()
             this.ifCollision()
-            if (this.framesCounter > 500 && !this.finishLine) this.drawFinishLine()
+            if (this.framesCounter > 1500 && !this.finishLine) this.drawFinishLine()
             this.win()
 
-        }, 1000 / 60)
+        }, 1200 / 60)
 
     },
 
@@ -70,7 +71,8 @@ const jumpGame = {
         const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
 
         if (lastPlatformPosition > 0 && this.finishLine === undefined) {
-            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 300, 100, 1, this.canvasSize))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 150, 100, 2, this.canvasSize))
         }
 
         if (this.framesCounter % 50 === 0 && this.finishLine === undefined) {
@@ -78,7 +80,7 @@ const jumpGame = {
             this.fakePlatforms.push(new Fakeplatform(this.ctx, lastPlatformPosition - 180, 100, 5, this.canvasSize))
         }
 
-        if (this.framesCounter % 200 === 0 && this.finishLine === undefined) {
+        if (this.framesCounter % 5000 === 0 && this.finishLine === undefined) {
             this.enemies.push(new Enemy(this.ctx, 0, 30, 2, this.canvasSize, 'bomb.png'))
         }
 
@@ -93,12 +95,13 @@ const jumpGame = {
     createUniqueElements() {
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
+        this.background = new Background(this.ctx, this.canvasSize.w, this.canvasSize.h, "/img/bgCanvas1.png")
+
         this.platforms.push(new Platform(this.ctx, 300, 100, 1, this.canvasSize))
 
     },
 
     drawFinishLine() {
-        console.log('dibujado')
         const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
         this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform.png')
     },
@@ -112,6 +115,8 @@ const jumpGame = {
     },
 
     drawAll() {
+        this.background.draw()
+        console.log('dibujado', this.background.draw())
         this.platforms.forEach(elm => elm.createPlatform())
         this.fakePlatforms.forEach(elm => elm.createFakePlatform())
         this.enemies.forEach(elm => elm.createEnemies())
@@ -184,11 +189,12 @@ const jumpGame = {
     gameOver() {
         clearInterval(this.interval)
         setCanvas()
+        loserSong()
         setGameOver()
     },
 
     win() {
-
+        
         if (this.finishLine && this.jumper.jumperPos.x + this.jumper.jumperSize.w >= this.finishLine.finishLinePos.x &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h >= this.finishLine.finishLinePos.y &&
             this.jumper.jumperPos.x <= this.finishLine.finishLinePos.x + this.finishLine.finishLineSize.w &&
@@ -196,6 +202,8 @@ const jumpGame = {
             !this.jumper.isJumping) {
             return clearInterval(this.interval)
         }
+
+        winSong()
 
     }
 

@@ -2,6 +2,8 @@ const startButton = document.getElementById('btn-Start');
 const canvasContainer = document.querySelector('.canvas-container')
 const startContainer = document.querySelector('.start-container')
 const gameOverContainer = document.querySelector('.gameOver-container')
+const sounds = document.getElementById('sounds')
+    
 
 
 
@@ -10,11 +12,14 @@ window.onload = () => {
         setStart()
         setCanvas()
         jumpGame.init('canvas')
-    };
+        sounds.innerHTML = '<audio src="/sounds/main-song.mp3" autoplay></audio>'
+        winSong()
+        loserSong()
+    }
 
     document.getElementById('btn-Try').onclick = () => {
         document.location.reload()
-    };
+    }
 
 };
 
@@ -22,7 +27,6 @@ window.onload = () => {
 
 
 function setCanvas() {
-    console.log(canvasContainer)
     canvasContainer.classList.toggle('invisible')
     canvasContainer.classList.toggle('visible')
 }
@@ -36,4 +40,12 @@ function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
 
+}
+
+function loserSong() {
+    sounds.innerHTML = '<audio src="/sounds/loser-song.mp3" autoplay></audio>'
+}
+
+function winSong() {
+   // sounds.innerHTML = '<audio src="/sounds/win-song.mp3" autoplay></audio>'
 }
