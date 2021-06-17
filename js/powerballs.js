@@ -10,8 +10,8 @@ class Powerballs {
         this.powerBallsSpeed = speed
         this.canvasSize = canvasSize
         this.imageInstance = undefined
-        this.init()
         this.powerBallsImage = powerBallsPhoto
+        this.init()
 
     }
 
@@ -40,8 +40,8 @@ class Powerballs {
 
     createPowerBalls() {
         this.imageInstance = new Image()
-        this.imageInstance.src = `img/${this.powerBallsPhoto}`
-        this.ctx.drawImage(this.imageInstance, this.powerBallsPos.x, this.powerBallsPos.y, this.powerBallsSize.w, this.powerBallsSize.h)
+        this.imageInstance.src = 'img/rockets.png'
+        this.ctx.drawImage(this.imageInstance, this.powerBallsPos.x, this.powerBallsPos.y, this.powerBallsSize.w, this.powerBallsSize.h)     
         // aqui es donde metemos la imagen de los powerballs
     }
 
