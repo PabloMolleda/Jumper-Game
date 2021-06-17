@@ -182,6 +182,8 @@ const jumpGame = {
 
     gameOver() {
         clearInterval(this.interval)
+        setCanvas()
+        setGameOver()
     },
 
     win() {

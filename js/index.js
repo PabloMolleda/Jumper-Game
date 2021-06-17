@@ -12,7 +12,13 @@ window.onload = () => {
         jumpGame.init('canvas')
     };
 
+    document.getElementById('btn-Try').onclick = () => {
+        document.location.reload()
+    };
+
 };
+
+
 
 
 function setCanvas() {
