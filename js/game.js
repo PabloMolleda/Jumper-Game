@@ -101,7 +101,6 @@ const jumpGame = {
             this.jumper.jumperPos.y + this.jumper.jumperSize.h - 30 <= this.finishLine.finishLinePos.y + this.finishLine.finishLineSize.h &&
             !this.jumper.isJumping) {
             clearInterval(this.interval)
-
         }
     },
 
@@ -183,7 +182,10 @@ const jumpGame = {
     gameOver() {
         if (this.jumper.jumperPos.y > this.canvasSize.h - this.jumper.jumperSize.h - 5) {
             clearInterval(this.interval)
+            setGameOver()
+            setCanvas()
         }
+
     },
 
     win() {

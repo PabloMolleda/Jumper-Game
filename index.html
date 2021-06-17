@@ -10,9 +10,25 @@
 </head>
 
 <body>
-    <h1 id="score"></h1>
-    <canvas id="canvas"></canvas>
+    <div class="mainContainer">
+        <div class="gameContainer">
+            <div class="canvas-container invisible">
+                <div class="cavas-align">
 
+                    <h1 id="score"></h1>
+                    <canvas id="canvas" class="canvas-style"></canvas>
+                </div>
+            </div>
+            <div class="start-container visible">
+                <h1>IRON JUMP</h1>
+                <button id="btn-Start" class="btn start">START</button>
+            </div>
+            <div class="gameOver-container invisible">
+                <h1>GAME OVER</h1>
+                <button id="btn-Try" class="btn try">TRY AGAIN</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/finish.js"></script>
     <script src="js/enemies.js"></script>
