@@ -11,7 +11,7 @@ class Finishline {
         this.speed = 3
         this.createFinishLine()
         this.finishLineImage = finishLinePhoto
-    
+
     }
 
     createFinishLine() {
@@ -20,7 +20,7 @@ class Finishline {
     }
 
     draw() {
-        this.ctx.drawImage(this.imageInstance, this.finishLinePos.x, this.finishLinePos.y, this.finishLineSize.w, this.finishLineSize.h)
+        //this.ctx.drawImage(this.imageInstance, this.finishLinePos.x, this.finishLinePos.y, this.finishLineSize.w, this.finishLineSize.h)
     }
 
     move() {

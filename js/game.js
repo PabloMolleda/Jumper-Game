@@ -66,8 +66,8 @@ const jumpGame = {
 
         if (this.framesCounter % 20 === 0 && this.finishLine === undefined) {
             const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
-            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform.png'))
-            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform.png'))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform1.png'))
+            this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize, 'platform1.png'))
         }
 
         // if (this.framesCounter % 80 === 0) {
@@ -85,7 +85,7 @@ const jumpGame = {
     createUniqueElements() {
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
-        this.platforms.push(new Platform(this.ctx, 300, 100, 1, this.canvasSize, 'platform.png'))
+        this.platforms.push(new Platform(this.ctx, 300, 100, 1, this.canvasSize, 'platform1.png'))
         // this.platforms.push(new Platform(this.ctx, 150, 100, 1, this.canvasSize, 'platform.png'))
         // this.platforms.push(new Platform(this.ctx, 250, 100, 1, this.canvasSize, 'platform.png'))
 
@@ -93,7 +93,7 @@ const jumpGame = {
 
     createFinishLine() {
         const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
-        this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform.png')
+        this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform1.png')
 
         if (this.jumper.jumperPos.x + this.jumper.jumperSize.w >= this.finishLine.finishLinePos.x &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h >= this.finishLine.finishLinePos.y &&
