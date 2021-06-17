@@ -27,7 +27,7 @@ const jumpGame = {
         this.start()
         this.createUniqueElements()
         this.createAllPlatforms()
-        
+
 
     },
 
@@ -67,9 +67,9 @@ const jumpGame = {
     },
 
     createAllPlatforms() {
+        const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
 
-        if (this.framesCounter % 1 === 0 && this.finishLine === undefined) {
-            const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
+        if (lastPlatformPosition > 0 && this.finishLine === undefined) {
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize))
         }
 
@@ -78,7 +78,7 @@ const jumpGame = {
             this.fakePlatforms.push(new Fakeplatform(this.ctx, lastPlatformPosition - 180, 100, 5, this.canvasSize))
         }
 
-        if (this.framesCounter % 212321123233221312300 === 0 && this.finishLine === undefined) {
+        if (this.framesCounter % 200 === 0 && this.finishLine === undefined) {
             this.enemies.push(new Enemy(this.ctx, 0, 30, 2, this.canvasSize, 'bomb.png'))
         }
 
@@ -98,7 +98,7 @@ const jumpGame = {
     },
 
     drawFinishLine() {
-        console.log(this.finishLine.finishLinePos.y)
+        console.log('dibujado')
         const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
         this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform.png')
     },
@@ -160,6 +160,7 @@ const jumpGame = {
                 this.jumper.jumperPos.y + this.jumper.jumperSize.h - 10 <= elm.powerBallsPos.y + elm.powerBallsSize.h) {
                 this.platforms.forEach(elm => elm.maximumSpeed())
                 this.jumper.bigJump()
+                this.powerBalls = this.powerBalls.filter(elm => { elm.canvasSize.h >= elm.powerBallsPos.y - 10 && elm.canvasSize.h <= elm.powerBallsPos.y + 10 })
             }
         })
 
@@ -185,7 +186,7 @@ const jumpGame = {
     },
 
     win() {
-        
+
         if (this.finishLine && this.jumper.jumperPos.x + this.jumper.jumperSize.w >= this.finishLine.finishLinePos.x &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h >= this.finishLine.finishLinePos.y &&
             this.jumper.jumperPos.x <= this.finishLine.finishLinePos.x + this.finishLine.finishLineSize.w &&
@@ -193,7 +194,7 @@ const jumpGame = {
             !this.jumper.isJumping) {
             return clearInterval(this.interval)
         }
-    
+
     }
 
 
