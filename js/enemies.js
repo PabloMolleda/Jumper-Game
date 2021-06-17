@@ -14,7 +14,7 @@ class Enemy {
         this.enemiesImage = enemiesPhoto
 
         this.init()
-        
+
     }
 
     init() {
@@ -22,9 +22,9 @@ class Enemy {
     }
 
     enemiesRandomPosX() {
-        this.enemiesPos.x = Math.floor(Math.random() * 500)
+        this.enemiesPos.x = Math.floor(Math.random() * 486)
         if (this.enemiesPos.x + this.enemiesSize.w > this.canvasSize.w || this.enemiesPos.x === 0) {
-            this.enemiesPos.x = 100
+            this.enemiesPos.x = 167
         }
     }
     createEnemies() {
@@ -36,7 +36,7 @@ class Enemy {
 
     move() {
         this.enemiesPos.y += this.enemiesSpeed
-        
+
     }
 
 }

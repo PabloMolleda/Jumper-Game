@@ -73,7 +73,7 @@ const jumpGame = {
             this.platforms.push(new Platform(this.ctx, lastPlatformPosition - 180, 100, 1, this.canvasSize))
         }
 
-        if (this.framesCounter % 50 === 0 && this.finishLine === undefined) {
+        if (this.framesCounter % 70 === 0 && this.finishLine === undefined) {
             const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
             this.fakePlatforms.push(new Fakeplatform(this.ctx, lastPlatformPosition - 180, 100, 5, this.canvasSize))
         }
@@ -100,7 +100,7 @@ const jumpGame = {
     drawFinishLine() {
         console.log('dibujado')
         const lastPlatformPosition = this.platforms[this.platforms.length - 1].platformPos.y
-        this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'platform.png')
+        this.finishLine = new Finishline(this.ctx, this.canvasSize, lastPlatformPosition, 'finishLine.png')
     },
 
     clearScreen() {
@@ -166,12 +166,12 @@ const jumpGame = {
 
     },
     scoreCount() {
-        let scoreElement = document.getElementById('score')
+        let scoreElement = document.querySelector('.score span')
         if (this.platforms[0].platformPos.y > this.jumper.jumperPos.y + 10) {
             this.score++;
         }
         if (this.framesCounter % 60 === 0) {
-            scoreElement.innerHTML = ("SCORE: " + this.score)
+            scoreElement.innerHTML = this.score
         }
     },
 
@@ -182,9 +182,12 @@ const jumpGame = {
     },
 
     gameOver() {
+
         clearInterval(this.interval)
         setCanvas()
         setGameOver()
+
+
     },
 
     win() {
@@ -194,7 +197,9 @@ const jumpGame = {
             this.jumper.jumperPos.x <= this.finishLine.finishLinePos.x + this.finishLine.finishLineSize.w &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h <= this.finishLine.finishLinePos.y + this.finishLine.finishLineSize.h &&
             !this.jumper.isJumping) {
-            return clearInterval(this.interval)
+            clearInterval(this.interval)
+
+            setWin()
         }
 
     }

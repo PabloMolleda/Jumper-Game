@@ -2,6 +2,14 @@ const startButton = document.getElementById('btn-Start');
 const canvasContainer = document.querySelector('.canvas-container')
 const startContainer = document.querySelector('.start-container')
 const gameOverContainer = document.querySelector('.gameOver-container')
+const winContainer = document.querySelector('.win-container ')
+
+
+const gameOverScore = document.querySelector('.score-gOver')
+const winScore = document.querySelector('.score-win')
+
+
+
 
 
 
@@ -35,5 +43,15 @@ function setStart() {
 function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
+    console.log(this.scoreNum)
+    gameOverScore.innerHTML(this.scoreNum)
+
+}
+
+function setWin() {
+    winContainer.classList.toggle('invisible')
+    winContainer.classList.toggle('visible')
+
+    winScore.textContent(this.score)
 
 }

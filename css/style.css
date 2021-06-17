@@ -33,13 +33,18 @@ body{
     z-index: 20;
 }
 
-.start-container{
+.start-container, .gameOver-container{
+    height: 700px;
+    background-image: url('../img/frameScreens.png');
     align-content: center;
     align-items: center;
     flex-direction: column;
     width: inherit;
     text-align: center;
     background-color: rgb(12, 21, 44, 0.5);
+}
+.logo-img, .gOver-img{
+    margin-top: 150px;
 }
 
 .visible{
@@ -49,41 +54,49 @@ body{
     display: none;
 }
 
-/* .btn{
-    font-size: 30px;
-  background-color: #870007;
-  color: #fff;
-  padding: 20px 40px;
-  border: 0;
-  box-shadow: 0;
-  border-radius: 5px;
-  margin-bottom: 20px;
 
-} */
-
+/* NEON BUTTON */
 :root {
-    --clr-neon: #148af0;
+    --clr-neon: #FF00FF;
+    --clr-blue-neon: #00FFFF;
     --clr-bg: hsl(323 21% 16%)
 }
 
 .btn {
     font-size: 25px;
     height: 60px;
-    width: 150px;
+    width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 100px;
+    padding: 0 20px;
     cursor: pointer;
     font-family: "Balsamiq Sans", cursive;
     text-decoration: none;
-    color: var(--clr-neon);
+    color: var(--clr-blue-neon);
     border: var(--clr-neon) 3px solid;
     background-color: transparent;
     border-radius: 0.25em;
     text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
     box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
-    transition: all 0.5s
+    transition: all 0.5s;
+    animation: glowing 1300ms infinite;
 }
+@keyframes glowing {
+        0% {
+          background-color: #c930c9;
+          box-shadow: 0 0 5px #c930c9;
+        }
+        50% {
+          background-color: #FF00FF;
+          box-shadow: 0 0 20px #FF00FF;
+        }
+        100% {
+          background-color: #c930c9;
+          box-shadow: 0 0 5px #c930c9;
+        }
+      }
 
 .btn:hover {
     background-color: var(--clr-neon);

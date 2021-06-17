@@ -21,9 +21,9 @@ class Platform {
     }
 
     platformRandomPosX() {
-        this.platformPos.x = Math.floor(Math.random() * 500)
+        this.platformPos.x = Math.floor(Math.random() * 498)
         if (this.platformPos.x + this.platformSize.w > this.canvasSize.w || this.platformPos.x === 0) {
-            this.platformPos.x = 100
+            this.platformPos.x = 176
         }
     }
 

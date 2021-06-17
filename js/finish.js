@@ -6,7 +6,7 @@ class Finishline {
             x: 0,
             y: lastPlatformPosition
         }
-        this.finishLineSize = { w: 500, h: 20 }
+        this.finishLineSize = { w: 500, h: 50 }
         this.canvasSize = canvasSize
         this.speed = 3
         this.finishLineImage = finishLinePhoto
@@ -25,8 +25,8 @@ class Finishline {
 
     move() {
         if (this.finishLinePos.y < 550) {
-         this.finishLinePos.y += this.speed
-        } 
+            this.finishLinePos.y += this.speed
+        }
     }
 
 

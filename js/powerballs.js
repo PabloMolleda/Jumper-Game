@@ -21,7 +21,7 @@ class Powerballs {
     }
 
     powerBallsRandomPosX() {
-        this.powerBallsPos.x = Math.floor(Math.random() * 500)
+        this.powerBallsPos.x = Math.floor(Math.random() * 472)
         if (this.powerBallsPos.x + this.powerBallsSize.w > this.canvasSize.w || this.powerBallsPos.x === 0) {
             this.powerBallsPos.x = 123
         }
@@ -41,7 +41,7 @@ class Powerballs {
     createPowerBalls() {
         this.imageInstance = new Image()
         this.imageInstance.src = 'img/rockets.png'
-        this.ctx.drawImage(this.imageInstance, this.powerBallsPos.x, this.powerBallsPos.y, this.powerBallsSize.w, this.powerBallsSize.h)     
+        this.ctx.drawImage(this.imageInstance, this.powerBallsPos.x, this.powerBallsPos.y, this.powerBallsSize.w, this.powerBallsSize.h)
         // aqui es donde metemos la imagen de los powerballs
     }
 

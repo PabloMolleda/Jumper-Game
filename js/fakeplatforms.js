@@ -19,9 +19,9 @@ class Fakeplatform {
     }
 
     platformRandomPosX() {
-        this.fakePlatformPos.x = Math.floor(Math.random() * 500)
+        this.fakePlatformPos.x = Math.floor(Math.random() * 483)
         if (this.fakePlatformPos.x + this.fakePlatformSize.w > this.canvasSize.w || this.fakePlatformPos.x === 0) {
-            this.fakePlatformPos.x = 100
+            this.fakePlatformPos.x = 263
         }
     }
 

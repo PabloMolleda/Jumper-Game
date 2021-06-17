@@ -15,17 +15,22 @@
             <div class="canvas-container invisible">
                 <div class="cavas-align">
 
-                    <h1 id="score"></h1>
+                    <h1 id="score" class="score">SCORE:<span></span></h1>
                     <canvas id="canvas" class="canvas-style"></canvas>
                 </div>
             </div>
             <div class="start-container visible">
-                <img src="img/logo.png" alt="Tron Jump Game">
-                <!-- <h1>IRON JUMP</h1> -->
+                <img class="logo-img" src="img/logo.png" alt="Tron Jump Game">
                 <button id="btn-Start" class="btn start">START</button>
             </div>
             <div class="gameOver-container invisible">
-                <h1>GAME OVER</h1>
+                <img class="gOver-img" src="img/game-over.png" alt="Tron Jump Game">
+                <h1 class="score-gOver"></h1>
+                <button id="btn-Try" class="btn try">TRY AGAIN</button>
+            </div>
+            <div class="win-container invisible">
+                <img class="gOver-img" src="img/game-over.png" alt="Tron Jump Game">
+                <h1 class="score-win"></h1>
                 <button id="btn-Try" class="btn try">TRY AGAIN</button>
             </div>
         </div>
