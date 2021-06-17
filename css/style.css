@@ -23,7 +23,7 @@ body{
 }
 .canvas-style {
     position: relative;
-    background-image: url('../img/bgCanvas2.png');
+    /* background-image: url('../img/bgCanvas2.png'); */
     background-repeat: no-repeat;
     /*background-color: rgba(112, 232, 232, 0.708);*/
     text-align: center;

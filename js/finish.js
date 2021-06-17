@@ -4,7 +4,7 @@ class Finishline {
         this.ctx = ctx
         this.finishLinePos = {
             x: 0,
-            y: lastPlatformPosition
+            y: lastPlatformPosition - 200
         }
         this.finishLineSize = { w: 500, h: 50 }
         this.canvasSize = canvasSize

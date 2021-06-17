@@ -10,6 +10,8 @@ const winScore = document.querySelector('.score-win')
 
 
 
+const sounds = document.getElementById('sounds')
+
 
 
 
@@ -18,11 +20,14 @@ window.onload = () => {
         setStart()
         setCanvas()
         jumpGame.init('canvas')
-    };
+        sounds.innerHTML = '<audio src="/sounds/main-song.mp3" autoplay></audio>'
+        winSong()
+        loserSong()
+    }
 
     document.getElementById('btn-Try').onclick = () => {
         document.location.reload()
-    };
+    }
 
 };
 
@@ -30,7 +35,6 @@ window.onload = () => {
 
 
 function setCanvas() {
-    console.log(canvasContainer)
     canvasContainer.classList.toggle('invisible')
     canvasContainer.classList.toggle('visible')
 }
@@ -54,4 +58,12 @@ function setWin() {
 
     winScore.textContent(this.score)
 
+}
+
+function loserSong() {
+    sounds.innerHTML = '<audio src="/sounds/loser-song.mp3" autoplay></audio>'
+}
+
+function winSong() {
+    // sounds.innerHTML = '<audio src="/sounds/win-song.mp3" autoplay></audio>'
 }
