@@ -12,9 +12,7 @@ body{
 .gameContainer{
     margin: 0 auto;
     width: 700px;
-    height: 700px;
-    /* background-color: green; */
-    
+    height: 700px;    
 }
 .canvas-container{
     align-content: center;
@@ -24,15 +22,12 @@ body{
 }
 .canvas-style {
     position: relative;
-    /* background-image: url('../img/bgCanvas2.png'); */
     background-repeat: no-repeat;
-    /*background-color: rgba(112, 232, 232, 0.708);*/
     text-align: center;
 }
 .frame{
     position:absolute;
     z-index: 3;
-
 }
 .score{
     position: absolute;
@@ -43,10 +38,19 @@ body{
     width: 80px;
     margin-right: 10px;
 }
-.score span{
+.score span, .score-gOver, .score-win{
     color: #00FFFF;
     text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
 
+}
+
+.score-gOver{
+    margin-top: 35px;
+    font-size: 70px;
+}
+.score-win{
+    margin-top: 40px;
+    font-size: 45px;
 }
 
 .start-container, .gameOver-container, .win-container {
@@ -59,7 +63,15 @@ body{
     text-align: center;
     background-color: rgb(12, 21, 44, 0.7);
 }
-.logo-img, .gOver-img, .win-img{
+
+.logo-img{
+    margin-top: 60px;
+}
+.instructions-img{
+    margin-top: 30px;
+}
+
+.gOver-img, .win-img{
     margin-top: 150px;
 }
 
@@ -85,7 +97,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 100px;
+    margin: 50px;
     padding: 0 20px;
     cursor: pointer;
     text-decoration: none;

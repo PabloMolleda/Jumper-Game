@@ -49,15 +49,14 @@ function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
     console.log(jumpGame.score)
-    //gameOverScore.innerHTML(jumpGame.score)
+    console.log(gameOverScore)
+    gameOverScore.textContent = jumpGame.score
 
 }
 
 function setWin() {
     winContainer.classList.toggle('invisible')
     winContainer.classList.toggle('visible')
-    //winScore.textContent(this.score)
-
 }
 
 function loserSong() {
