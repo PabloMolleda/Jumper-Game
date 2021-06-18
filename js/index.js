@@ -8,7 +8,9 @@ const winScore = document.querySelector('.score-win')
 
 
 
-const sounds = document.getElementById('sounds')
+const winSound = document.getElementById('win-sound')
+const mainSound = document.getElementById('main-sound')
+const loserSound = document.getElementById('loser-sound')
 
 
 
@@ -18,9 +20,7 @@ window.onload = () => {
         setStart()
         setCanvas()
         jumpGame.init('canvas')
-        sounds.innerHTML = '<audio src="/sounds/main-song.mp3" autoplay></audio>'
-        winSong()
-        loserSong()
+        mainSound.innerHTML = '<audio src="sounds/main-song.mp3" autoplay></audio>'
     }
 
     document.getElementById('btn-Try').onclick = () => {
@@ -49,6 +49,7 @@ function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
     console.log(jumpGame.score)
+    loserSound.innerHTML = '<audio src="sounds/loser-song.mp3" autoplay></audio>'
     //gameOverScore.innerHTML(jumpGame.score)
 
 }
@@ -56,14 +57,7 @@ function setGameOver() {
 function setWin() {
     winContainer.classList.toggle('invisible')
     winContainer.classList.toggle('visible')
+    winSound.innerHTML = '<audio src="sounds/win-song.mp3" autoplay></audio>'
     //winScore.textContent(this.score)
 
-}
-
-function loserSong() {
-    sounds.innerHTML = '<audio src="/sounds/loser-song.mp3" autoplay></audio>'
-}
-
-function winSong() {
-    // sounds.innerHTML = '<audio src="/sounds/win-song.mp3" autoplay></audio>'
 }
