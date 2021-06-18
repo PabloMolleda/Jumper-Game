@@ -11,7 +11,7 @@ class Background {
         this.image.src = imgSource
 
         this.image2 = new Image()
-        this.image2.src = '/img/bgCanvas2.png'
+        this.image2.src = 'img/bgCanvas2.png'
 
         this.backgroundPos = {
             x: 0,
