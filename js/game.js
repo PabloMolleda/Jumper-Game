@@ -78,7 +78,7 @@ const jumpGame = {
             this.fakePlatforms.push(new Fakeplatform(this.ctx, lastPlatformPosition - 180, 100, 5, this.canvasSize))
         }
 
-        if (this.framesCounter % 5000 === 0 && this.finishLine === undefined) {
+        if (this.framesCounter % 900 === 0 && this.finishLine === undefined) {
             this.enemies.push(new Enemy(this.ctx, 0, 40, 2, this.canvasSize, 'bomb.png'))
         }
 
@@ -203,7 +203,7 @@ const jumpGame = {
             setWin()
             setCanvas()
         }
-        
+
     }
 
 

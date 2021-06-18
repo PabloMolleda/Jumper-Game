@@ -49,23 +49,15 @@ function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
     console.log(jumpGame.score)
-<<<<<<< HEAD
     console.log(gameOverScore)
     gameOverScore.textContent = jumpGame.score
-=======
     loserSound.innerHTML = '<audio src="sounds/loser-song.mp3" autoplay></audio>'
-    //gameOverScore.innerHTML(jumpGame.score)
->>>>>>> 861ea2128d553c80b73e2e3617f51efa02ffad58
 
 }
 
 function setWin() {
     winContainer.classList.toggle('invisible')
     winContainer.classList.toggle('visible')
-<<<<<<< HEAD
-=======
     winSound.innerHTML = '<audio src="sounds/win-song.mp3" autoplay></audio>'
-    //winScore.textContent(this.score)
 
->>>>>>> 861ea2128d553c80b73e2e3617f51efa02ffad58
 }
