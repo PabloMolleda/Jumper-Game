@@ -81,12 +81,12 @@ const jumpGame = {
         }
 
         if (this.framesCounter % 5000 === 0 && this.finishLine === undefined) {
-            this.enemies.push(new Enemy(this.ctx, 0, 30, 2, this.canvasSize, 'bomb.png'))
+            this.enemies.push(new Enemy(this.ctx, 0, 40, 2, this.canvasSize, 'bomb.png'))
         }
 
         if (this.framesCounter % 50 === 0 && this.finishLine === undefined) {
 
-            this.powerBalls.push(new Powerballs(this.ctx, 100, 5, this.canvasSize))
+            this.powerBalls.push(new Powerballs(this.ctx, 50, 5, this.canvasSize))
 
         }
 
@@ -197,15 +197,16 @@ const jumpGame = {
     },
 
     win() {
-        
+
         if (this.finishLine && this.jumper.jumperPos.x + this.jumper.jumperSize.w >= this.finishLine.finishLinePos.x &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h >= this.finishLine.finishLinePos.y &&
             this.jumper.jumperPos.x <= this.finishLine.finishLinePos.x + this.finishLine.finishLineSize.w &&
             this.jumper.jumperPos.y + this.jumper.jumperSize.h <= this.finishLine.finishLinePos.y + this.finishLine.finishLineSize.h &&
             !this.jumper.isJumping) {
             clearInterval(this.interval)
-
             setWin()
+            setCanvas()
+
         }
 
         winSong()

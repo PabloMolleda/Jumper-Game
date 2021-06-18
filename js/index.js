@@ -3,8 +3,6 @@ const canvasContainer = document.querySelector('.canvas-container')
 const startContainer = document.querySelector('.start-container')
 const gameOverContainer = document.querySelector('.gameOver-container')
 const winContainer = document.querySelector('.win-container ')
-
-
 const gameOverScore = document.querySelector('.score-gOver')
 const winScore = document.querySelector('.score-win')
 
@@ -28,6 +26,9 @@ window.onload = () => {
     document.getElementById('btn-Try').onclick = () => {
         document.location.reload()
     }
+    document.getElementById('btn-Again').onclick = () => {
+        document.location.reload()
+    }
 
 };
 
@@ -47,16 +48,15 @@ function setStart() {
 function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
-    console.log(this.scoreNum)
-    gameOverScore.innerHTML(this.scoreNum)
+    console.log(jumpGame.score)
+    //gameOverScore.innerHTML(jumpGame.score)
 
 }
 
 function setWin() {
     winContainer.classList.toggle('invisible')
     winContainer.classList.toggle('visible')
-
-    winScore.textContent(this.score)
+    //winScore.textContent(this.score)
 
 }
 

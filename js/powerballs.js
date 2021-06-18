@@ -6,7 +6,7 @@ class Powerballs {
             x: undefined,
             y: undefined
         }
-        this.powerBallsSize = { w: powerBallsWidth, h: 30 }
+        this.powerBallsSize = { w: powerBallsWidth, h: 50 }
         this.powerBallsSpeed = speed
         this.canvasSize = canvasSize
         this.imageInstance = undefined

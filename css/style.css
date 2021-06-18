@@ -3,6 +3,7 @@
     padding: 0;
 }
 body{
+    font-family: 'Roboto', sans-serif;
     background-image: url('../img/Bg.png');
     background-repeat: no-repeat;
     background-color: gray;   
@@ -28,12 +29,27 @@ body{
     /*background-color: rgba(112, 232, 232, 0.708);*/
     text-align: center;
 }
-#score{
+.frame{
+    position:absolute;
+    z-index: 3;
+
+}
+.score{
     position: absolute;
     z-index: 20;
+    margin: 35px 25px;
+}
+.score img{
+    width: 80px;
+    margin-right: 10px;
+}
+.score span{
+    color: #00FFFF;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
 }
 
-.start-container, .gameOver-container{
+.start-container, .gameOver-container, .win-container {
     height: 700px;
     background-image: url('../img/frameScreens.png');
     align-content: center;
@@ -41,9 +57,9 @@ body{
     flex-direction: column;
     width: inherit;
     text-align: center;
-    background-color: rgb(12, 21, 44, 0.5);
+    background-color: rgb(12, 21, 44, 0.7);
 }
-.logo-img, .gOver-img{
+.logo-img, .gOver-img, .win-img{
     margin-top: 150px;
 }
 
@@ -72,7 +88,6 @@ body{
     margin: 100px;
     padding: 0 20px;
     cursor: pointer;
-    font-family: "Balsamiq Sans", cursive;
     text-decoration: none;
     color: var(--clr-blue-neon);
     border: var(--clr-neon) 3px solid;

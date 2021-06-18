@@ -6,7 +6,7 @@ class Enemy {
             x: undefined,
             y: enemiesPosY
         }
-        this.enemiesSize = { w: enemiesWidth, h: 30 }
+        this.enemiesSize = { w: enemiesWidth, h: 40 }
         this.enemiesSpeed = speed
         this.canvasSize = canvasSize
         this.imageInstance = undefined
