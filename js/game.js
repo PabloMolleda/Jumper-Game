@@ -95,7 +95,7 @@ const jumpGame = {
     createUniqueElements() {
         this.jumper = new Jumper(this.ctx, 250, this.keys)
 
-        this.background = new Background(this.ctx, this.canvasSize.w, this.canvasSize.h, "/img/bgCanvas1.png")
+        this.background = new Background(this.ctx, this.canvasSize.w, this.canvasSize.h, "img/bgCanvas1.png")
 
         this.platforms.push(new Platform(this.ctx, 300, 100, 1, this.canvasSize))
 
