@@ -28,8 +28,6 @@ const jumpGame = {
         this.start()
         this.createUniqueElements()
         this.createAllPlatforms()
-
-
     },
 
     setContext() {
@@ -190,9 +188,7 @@ const jumpGame = {
 
         clearInterval(this.interval)
         setCanvas()
-        loserSong()
         setGameOver()
-
 
     },
 
@@ -206,11 +202,8 @@ const jumpGame = {
             clearInterval(this.interval)
             setWin()
             setCanvas()
-
         }
-
-        winSong()
-
+        
     }
 
 
