@@ -48,8 +48,6 @@ function setStart() {
 function setGameOver() {
     gameOverContainer.classList.toggle('invisible')
     gameOverContainer.classList.toggle('visible')
-    console.log(jumpGame.score)
-    console.log(gameOverScore)
     gameOverScore.textContent = jumpGame.score
     loserSound.innerHTML = '<audio src="sounds/loser-song.mp3" autoplay></audio>'
 
