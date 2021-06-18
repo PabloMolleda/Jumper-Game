@@ -23,7 +23,7 @@ class Jumper {
 
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = 'img/jumper3.png'
+        this.imageInstance.src = 'img/jumper.png'
         this.setListeners()
         this.fall()
         this.initialJump()
